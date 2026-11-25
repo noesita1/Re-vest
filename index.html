@@ -1,90 +1,1144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RE-VEST | Moda de segunda mano</title>
 
-# ♻️ RE-VEST - Moda Circular
+<style>
+:root {
+    --pink: #e99ab5;
+    --dark: #c75f83;
+    --light: #fff0f5;
+    --cream: #fffaf8;
+    --text: #59414c;
+}
 
-## Descripción
+* {
+    box-sizing: border-box;
+}
 
-RE-VEST es una tienda virtual de ropa de segunda mano que busca
-fomentar la moda sostenible y el consumo responsable.
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--cream);
+    color: var(--text);
+}
 
-Su objetivo es conectar personas que desean comprar prendas
-económicas con personas que quieren vender ropa que ya no utilizan.
+/* ENCABEZADO */
+header {
+    background: white;
+    padding: 17px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 12px #00000010;
+}
 
-## ¿Qué hace el proyecto?
+.logo {
+    font-size: 29px;
+    font-weight: bold;
+    color: var(--dark);
+    letter-spacing: 3px;
+}
 
-- Muestra un catálogo de ropa de segunda mano.
-- Permite buscar prendas por nombre.
-- Filtra productos por categorías.
-- Ordena los productos por precio.
-- Permite guardar prendas favoritas.
-- Cuenta con un carrito de compras.
-- Calcula automáticamente el total de la compra.
-- Permite publicar nuevas prendas.
-- Muestra estadísticas de reutilización e impacto ambiental.
-- Guarda los datos en el almacenamiento local del navegador.
+.search {
+    display: flex;
+    width: 43%;
+    border: 1px solid #edc6d3;
+    border-radius: 25px;
+    overflow: hidden;
+}
 
-## Tecnologías utilizadas
+.search input {
+    border: none;
+    outline: none;
+    padding: 12px;
+    width: 100%;
+}
 
-- HTML5: estructura de la aplicación.
-- CSS3: diseño visual y adaptación a dispositivos móviles.
-- JavaScript: funcionalidades e interactividad.
-- LocalStorage: almacenamiento de información.
-- Google Fonts: tipografías.
+.search button {
+    background: var(--pink);
+    color: white;
+    border: none;
+    padding: 0 20px;
+    cursor: pointer;
+}
 
-## Estructura del proyecto
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
 
-re-vest/
-│
-├── index.html
-├── README.md
-└── .gitignore
+.header-icons button {
+    background: none;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
 
-## Cómo ejecutar el proyecto
+.count {
+    font-size: 12px;
+    background: var(--dark);
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
+}
 
-1. Clonar el repositorio:
+/* MENÚ */
+nav {
+    background: #fce3eb;
+    display: flex;
+    justify-content: center;
+    gap: 23px;
+    padding: 15px;
+    flex-wrap: wrap;
+}
 
-   git clone URL_DE_TU_REPOSITORIO
+nav a {
+    color: #704b5b;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-2. Entrar a la carpeta:
+nav a:hover {
+    color: var(--dark);
+}
 
-   cd re-vest
+/* BANNER */
+.banner {
+    margin: 25px 4%;
+    min-height: 280px;
+    border-radius: 18px;
+    background: linear-gradient(120deg, #ec87a7, #f4b5c9, #f8cdd7);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px;
+    color: white;
+}
 
-3. Cambiar a la rama principal:
+.banner h1 {
+    font-size: 42px;
+    margin: 12px 0;
+}
 
-   git checkout main
+.banner p {
+    font-size: 17px;
+}
 
-4. Abrir el archivo index.html en un navegador.
+.banner button {
+    padding: 14px 28px;
+    border: 2px solid white;
+    background: white;
+    color: var(--dark);
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-También se puede ejecutar utilizando la extensión
-Live Server de Visual Studio Code.
+.banner img {
+    width: 260px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+}
 
-## Funcionamiento
+/* CATEGORÍAS */
+.categories {
+    padding: 20px 5%;
+    text-align: center;
+}
 
-El usuario puede explorar el catálogo, buscar productos,
-filtrar por categorías, agregar prendas a favoritos
-y añadir productos al carrito.
+.categories h2 {
+    color: var(--dark);
+}
 
-También puede publicar prendas usadas mediante un formulario.
+.category-list {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
 
-La aplicación utiliza LocalStorage para guardar los datos
-en el navegador, permitiendo conservar la información
-entre sesiones en el mismo dispositivo.
+.category-list button {
+    background: white;
+    border: 1px solid #f2c5d4;
+    border-radius: 25px;
+    padding: 12px 20px;
+    cursor: pointer;
+    color: var(--text);
+}
 
-Las compras son simuladas y no procesan pagos reales.
+.category-list button:hover,
+.category-list button.active {
+    background: var(--pink);
+    color: white;
+}
 
-## Ramas de Git
+/* PRODUCTOS */
+.products-section {
+    padding: 25px 5%;
+}
 
-- main: contiene la versión funcional de producción.
-- develop: contiene el desarrollo y las mejoras del proyecto.
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
-Todos los cambios y nuevas funcionalidades se desarrollan
-primero en la rama develop.
+.section-title h2 {
+    color: var(--dark);
+}
 
-## Objetivo del proyecto
+#products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    margin-top: 20px;
+}
 
-Promover la economía circular, reducir el desperdicio textil
-y demostrar cómo la tecnología puede ayudar a construir
-hábitos de consumo más sostenibles.
+.product {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px #e9b8c72b;
+    transition: .2s;
+    position: relative;
+}
 
-## Autor
+.product:hover {
+    transform: translateY(-5px);
+}
 
-Proyecto académico de desarrollo web.
+.product img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    background: #f8e9ee;
+    cursor: zoom-in;
+    transition: transform .3s;
+}
+
+.product img:hover {
+    transform: scale(1.03);
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-info h3 {
+    font-size: 16px;
+    margin: 12px 0 5px;
+}
+
+.product-info p {
+    font-size: 13px;
+    color: #888;
+}
+
+.price {
+    color: var(--dark);
+    font-size: 20px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.condition {
+    font-size: 11px;
+    color: #57866a;
+    background: #e9f6ed;
+    padding: 6px 9px;
+    border-radius: 15px;
+}
+
+.favorite {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 21px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.favorite.selected {
+    color: #e34d7b;
+}
+
+.add {
+    width: 100%;
+    background: var(--pink);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.add:hover,
+.checkout:hover,
+.modal-add:hover {
+    background: var(--dark);
+}
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px;
+}
+
+/* INFORMACIÓN */
+.info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 35px 5%;
+}
+
+.info-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 3px 12px #e9b8c72b;
+}
+
+.info-card h3 {
+    color: var(--dark);
+}
+
+/* VENTANA DE FOTOGRAFÍA */
+.image-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(35, 20, 30, .85);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.image-modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+    max-width: 620px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    max-height: 95vh;
+    overflow-y: auto;
+}
+
+.modal-content img {
+    width: 100%;
+    max-height: 55vh;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #fff7fa;
+}
+
+.modal-content h2 {
+    color: var(--dark);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    border: none;
+    background: var(--light);
+    color: var(--dark);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 23px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.modal-add {
+    background: var(--pink);
+    color: white;
+    border: none;
+    padding: 13px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* CARRITO */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #00000070;
+    z-index: 50;
+}
+
+.overlay.show {
+    display: block;
+}
+
+.cart-panel {
+    position: fixed;
+    right: -420px;
+    top: 0;
+    width: 390px;
+    max-width: 100%;
+    height: 100vh;
+    background: white;
+    z-index: 60;
+    padding: 22px;
+    transition: .3s;
+    overflow-y: auto;
+}
+
+.cart-panel.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-header h2 {
+    color: var(--dark);
+}
+
+.cart-header button {
+    border: none;
+    background: none;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    gap: 12px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item img {
+    width: 85px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-info p {
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quantity button {
+    border: none;
+    background: var(--light);
+    color: var(--dark);
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+    cursor: pointer;
+}
+
+.remove {
+    border: none;
+    background: none;
+    color: #c75f83;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 25px 0;
+}
+
+.checkout {
+    width: 100%;
+    background: var(--pink);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* PIE DE PÁGINA */
+footer {
+    background: #fce3eb;
+    color: #704b5b;
+    text-align: center;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+footer h2 {
+    color: var(--dark);
+}
+
+/* ADAPTACIÓN A CELULARES */
+@media (max-width: 900px) {
+    #products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .banner h1 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-wrap: wrap;
+    }
+
+    .search {
+        width: 100%;
+        order: 3;
+    }
+
+    .banner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .banner img {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .banner h1 {
+        font-size: 27px;
+    }
+
+    #products {
+        grid-template-columns: 1fr;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        gap: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ENCABEZADO -->
+<header>
+    <div class="logo">🌸 RE-VEST</div>
+
+    <div class="search">
+        <input id="search" type="text" placeholder="Buscar vestidos, jeans, chaquetas...">
+        <button onclick="renderProducts()">🔍</button>
+    </div>
+
+    <div class="header-icons">
+        <button onclick="showFavorites()" title="Favoritos">♡</button>
+        <button onclick="openCart()" title="Carrito">
+            🛒 <span class="count" id="cartCount">0</span>
+        </button>
+    </div>
+</header>
+
+<!-- MENÚ -->
+<nav>
+    <a onclick="filterCategory('Todos')">Inicio</a>
+    <a onclick="filterCategory('Mujer')">Mujer</a>
+    <a onclick="filterCategory('Hombre')">Hombre</a>
+    <a onclick="filterCategory('Niña')">Niña</a>
+    <a onclick="filterCategory('Niño')">Niño</a>
+    <a onclick="filterCategory('Vestidos')">Vestidos</a>
+    <a onclick="filterCategory('Pantalones')">Pantalones</a>
+    <a onclick="filterCategory('Chaquetas')">Chaquetas</a>
+    <a onclick="filterCategory('Zapatos')">Zapatos</a>
+    <a onclick="filterCategory('Accesorios')">Accesorios</a>
+</nav>
+
+<!-- BANNER -->
+<section class="banner">
+    <div>
+        <p>♡ MODA CIRCULAR ♡</p>
+        <h1>RENUEVA TU ESTILO</h1>
+        <p>Ropa de segunda mano a precios increíbles.</p>
+        <p>¡Dale una segunda vida a la moda!</p>
+        <button onclick="document.getElementById('catalogo').scrollIntoView()">
+            COMPRAR AHORA
+        </button>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600" alt="Moda">
+</section>
+
+<!-- CATEGORÍAS -->
+<section class="categories">
+    <h2>♡ EXPLORA NUESTRAS CATEGORÍAS ♡</h2>
+
+    <div class="category-list">
+        <button class="active" onclick="filterCategory('Todos')">🌸 Todo</button>
+        <button onclick="filterCategory('Mujer')">👗 Mujer</button>
+        <button onclick="filterCategory('Hombre')">👕 Hombre</button>
+        <button onclick="filterCategory('Niña')">🎀 Niña</button>
+        <button onclick="filterCategory('Niño')">🧸 Niño</button>
+        <button onclick="filterCategory('Vestidos')">💗 Vestidos</button>
+        <button onclick="filterCategory('Pantalones')">👖 Pantalones</button>
+        <button onclick="filterCategory('Chaquetas')">🧥 Chaquetas</button>
+        <button onclick="filterCategory('Zapatos')">👟 Zapatos</button>
+        <button onclick="filterCategory('Accesorios')">👜 Accesorios</button>
+    </div>
+</section>
+
+<!-- CATÁLOGO -->
+<section class="products-section" id="catalogo">
+    <div class="section-title">
+        <h2>♡ NUESTRA COLECCIÓN</h2>
+        <span>Prendas únicas de segunda mano</span>
+    </div>
+
+    <div id="products"></div>
+</section>
+
+<!-- INFORMACIÓN -->
+<section class="info">
+    <div class="info-card">
+        <h3>♻️ Moda circular</h3>
+        <p>Ayudamos a darle una segunda vida a la ropa.</p>
+    </div>
+
+    <div class="info-card">
+        <h3>💗 Precios económicos</h3>
+        <p>Encuentra prendas bonitas a precios accesibles.</p>
+    </div>
+
+    <div class="info-card">
+        <h3>🌸 Compra responsable</h3>
+        <p>Promovemos el consumo consciente y sostenible.</p>
+    </div>
+</section>
+
+<!-- VENTANA DE FOTOGRAFÍA -->
+<div class="image-modal" id="imageModal" onclick="closeImage(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeImage()">×</button>
+        <img id="largeImage" src="" alt="Prenda seleccionada">
+        <h2 id="largeName"></h2>
+        <p id="largeCategory"></p>
+        <p id="largeCondition"></p>
+        <h2 id="largePrice"></h2>
+        <button class="modal-add" id="modalAdd">🛒 AGREGAR AL CARRITO</button>
+    </div>
+</div>
+
+<!-- CARRITO -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<aside class="cart-panel" id="cart">
+    <div class="cart-header">
+        <h2>🛒 MI CARRITO</h2>
+        <button onclick="closeCart()">✕</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="total">
+        <span>Total:</span>
+        <span id="total">$0</span>
+    </div>
+
+    <button class="checkout" onclick="checkout()">FINALIZAR COMPRA</button>
+
+    <p style="font-size:12px;text-align:center;color:#999">
+        Compra demostrativa. No se realizan pagos reales.
+    </p>
+</aside>
+
+<!-- PIE DE PÁGINA -->
+<footer>
+    <h2>🌸 RE-VEST</h2>
+    <p>Moda circular, estilo único y consumo responsable.</p>
+    <p>Compra, vende y dale una segunda oportunidad a tu ropa.</p>
+    <p>Instagram: @revest_moda</p>
+    <p>© 2026 RE-VEST | Proyecto académico</p>
+</footer>
+
+<script>
+/* CATÁLOGO DE PRODUCTOS */
+const products = [
+    {
+        id: 1,
+        name: "Vestido floral de mujer",
+        category: "Vestidos",
+        price: 6500,
+        condition: "Muy buen estado",
+        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600"
+    },
+    {
+        id: 2,
+        name: "Jeans denim de mujer",
+        category: "Pantalones",
+        price: 7000,
+        condition: "Buen estado",
+        image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600"
+    },
+    {
+        id: 3,
+        name: "Chaqueta de mezclilla",
+        category: "Chaquetas",
+        price: 8500,
+        condition: "Muy buen estado",
+        image: "https://images.unsplash.com/photo-1543076447-215ad9ba6923?w=600"
+    },
+    {
+        id: 4,
+        name: "Blusa casual de mujer",
+        category: "Mujer",
+        price: 4500,
+        condition: "Buen estado",
+        image: "https://images.unsplash.com/photo-1564257577-6a9c3f9f5f6b?w=600"
+    },
+    {
+        id: 5,
+        name: "Vestido de niña",
+        category: "Niña",
+        price: 5000,
+        condition: "Muy buen estado",
+        image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600"
+    },
+    {
+        id: 6,
+        name: "Conjunto infantil de niño",
+        category: "Niño",
+        price: 5500,
+        condition: "Buen estado",
+        image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=600"
+    },
+    {
+        id: 7,
+        name: "Camisa casual de hombre",
+        category: "Hombre",
+        price: 6000,
+        condition: "Buen estado",
+        image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600"
+    },
+    {
+        id: 8,
+        name: "Polerón de hombre",
+        category: "Hombre",
+        price: 7000,
+        condition: "Muy buen estado",
+        image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600"
+    },
+    {
+        id: 9,
+        name: "Bolso vintage",
+        category: "Accesorios",
+        price: 5000,
+        condition: "Buen estado",
+        image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600"
+    },
+    {
+        id: 10,
+        name: "Zapatillas urbanas",
+        category: "Zapatos",
+        price: 8000,
+        condition: "Buen estado",
+        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+    },
+    {
+        id: 11,
+        name: "Pantalón casual de hombre",
+        category: "Pantalones",
+        price: 6500,
+        condition: "Muy buen estado",
+        image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600"
+    },
+    {
+        id: 12,
+        name: "Chaqueta de cuero de mujer",
+        category: "Chaquetas",
+        price: 9000,
+        condition: "Excelente estado",
+        image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600"
+    },
+    {
+        id: 13,
+        name: "Vestido elegante de mujer",
+        category: "Vestidos",
+        price: 7500,
+        condition: "Muy buen estado",
+        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600"
+    },
+    {
+        id: 14,
+        name: "Polera básica de mujer",
+        category: "Mujer",
+        price: 3500,
+        condition: "Buen estado",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600"
+    },
+    {
+        id: 15,
+        name: "Conjunto infantil de niña",
+        category: "Niña",
+        price: 6000,
+        condition: "Muy buen estado",
+        image: "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600"
+    },
+    {
+        id: 16,
+        name: "Polera infantil de niño",
+        category: "Niño",
+        price: 3500,
+        condition: "Buen estado",
+        image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600"
+    },
+    {
+        id: 17,
+        name: "Camisa formal de hombre",
+        category: "Hombre",
+        price: 6000,
+        condition: "Excelente estado",
+        image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600"
+    },
+    {
+        id: 18,
+        name: "Pantalón de mujer",
+        category: "Pantalones",
+        price: 7000,
+        condition: "Muy buen estado",
+        image: "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?w=600"
+    },
+    {
+        id: 19,
+        name: "Zapatillas casuales",
+        category: "Zapatos",
+        price: 9000,
+        condition: "Buen estado",
+        image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600"
+    },
+    {
+        id: 20,
+        name: "Bolso rosado de segunda mano",
+        category: "Accesorios",
+        price: 7500,
+        condition: "Muy buen estado",
+        image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=600"
+    }
+];
+
+/* VARIABLES */
+let cart = [];
+let favorites = [];
+let currentCategory = "Todos";
+let onlyFavorites = false;
+
+const money = n => "$" + n.toLocaleString("es-CL");
+
+/* MOSTRAR PRODUCTOS */
+function renderProducts() {
+    const container = document.getElementById("products");
+    const search = document.getElementById("search").value.toLowerCase();
+
+    const filtered = products.filter(p => {
+        const categoryMatch =
+            currentCategory === "Todos" ||
+            p.category === currentCategory ||
+            (currentCategory === "Mujer" &&
+            ["Vestidos", "Pantalones", "Chaquetas"].includes(p.category));
+
+        const searchMatch =
+            (p.name + " " + p.category).toLowerCase().includes(search);
+
+        const favoriteMatch =
+            !onlyFavorites || favorites.includes(p.id);
+
+        return categoryMatch && searchMatch && favoriteMatch;
+    });
+
+    container.innerHTML = "";
+
+    if (filtered.length === 0) {
+        container.innerHTML =
+            '<div class="empty">🌸 No encontramos prendas. Intenta otra búsqueda.</div>';
+        return;
+    }
+
+    filtered.forEach(p => {
+        const isFavorite = favorites.includes(p.id);
+
+        container.innerHTML += `
+            <article class="product">
+                <button
+                    class="favorite ${isFavorite ? "selected" : ""}"
+                    onclick="toggleFavorite(${p.id})">
+                    ${isFavorite ? "♥" : "♡"}
+                </button>
+
+                <img
+                    src="${p.image}"
+                    alt="${p.name}"
+                    loading="lazy"
+                    onclick="showImage(${p.id})">
+
+                <div class="product-info">
+                    <span class="condition">
+                        ♻ Usado · ${p.condition}
+                    </span>
+
+                    <h3>${p.name}</h3>
+                    <p>${p.category} · Segunda mano</p>
+
+                    <div class="price">${money(p.price)}</div>
+
+                    <button class="add" onclick="addToCart(${p.id})">
+                        + AGREGAR AL CARRITO
+                    </button>
+                </div>
+            </article>
+        `;
+    });
+}
+
+/* FILTRAR CATEGORÍAS */
+function filterCategory(category) {
+    currentCategory = category;
+    onlyFavorites = false;
+
+    document.querySelectorAll(".category-list button").forEach(btn => {
+        btn.classList.toggle(
+            "active",
+            btn.textContent.includes(category === "Todos" ? "Todo" : category)
+        );
+    });
+
+    renderProducts();
+}
+
+/* FAVORITOS */
+function showFavorites() {
+    onlyFavorites = !onlyFavorites;
+    currentCategory = "Todos";
+    renderProducts();
+}
+
+function toggleFavorite(id) {
+    if (favorites.includes(id)) {
+        favorites = favorites.filter(f => f !== id);
+    } else {
+        favorites.push(id);
+    }
+
+    renderProducts();
+}
+
+/* ABRIR FOTO GRANDE */
+function showImage(id) {
+    const product = products.find(p => p.id === id);
+
+    if (!product) return;
+
+    document.getElementById("largeImage").src = product.image;
+    document.getElementById("largeName").textContent = product.name;
+    document.getElementById("largeCategory").textContent =
+        "Categoría: " + product.category;
+    document.getElementById("largeCondition").textContent =
+        "♻ Segunda mano · " + product.condition;
+    document.getElementById("largePrice").textContent = money(product.price);
+
+    document.getElementById("modalAdd").onclick = function() {
+        addToCart(id);
+        closeImage();
+    };
+
+    document.getElementById("imageModal").classList.add("show");
+}
+
+/* CERRAR FOTO */
+function closeImage(event) {
+    if (event && event.target.id !== "imageModal") {
+        return;
+    }
+
+    document.getElementById("imageModal").classList.remove("show");
+}
+
+/* AGREGAR AL CARRITO */
+function addToCart(id) {
+    const item = cart.find(p => p.id === id);
+
+    if (item) {
+        item.quantity++;
+    } else {
+        const product = products.find(p => p.id === id);
+
+        if (!product) return;
+
+        cart.push({
+            ...product,
+            quantity: 1
+        });
+    }
+
+    updateCart();
+    openCart();
+}
+
+/* ACTUALIZAR CARRITO */
+function updateCart() {
+    const container = document.getElementById("cartItems");
+
+    container.innerHTML = "";
+
+    let total = 0;
+    let count = 0;
+
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+        count += item.quantity;
+
+        container.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}">
+
+                <div class="cart-item-info">
+                    <strong>${item.name}</strong>
+                    <p>${money(item.price)}</p>
+
+                    <div class="quantity">
+                        <button onclick="changeQuantity(${item.id},-1)">−</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="changeQuantity(${item.id},1)">+</button>
+                    </div>
+
+                    <button class="remove" onclick="removeItem(${item.id})">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+
+    if (cart.length === 0) {
+        container.innerHTML =
+            '<p style="text-align:center;padding:35px">♡ Tu carrito está vacío.</p>';
+    }
+
+    document.getElementById("total").textContent = money(total);
+    document.getElementById("cartCount").textContent = count;
+}
+
+/* CAMBIAR CANTIDAD */
+function changeQuantity(id, amount) {
+    const item = cart.find(p => p.id === id);
+
+    if (!item) return;
+
+    item.quantity += amount;
+
+    if (item.quantity <= 0) {
+        removeItem(id);
+    } else {
+        updateCart();
+    }
+}
+
+/* ELIMINAR PRODUCTOS */
+function removeItem(id) {
+    cart = cart.filter(p => p.id !== id);
+    updateCart();
+}
+
+/* ABRIR Y CERRAR CARRITO */
+function openCart() {
+    document.getElementById("cart").classList.add("open");
+    document.getElementById("overlay").classList.add("show");
+}
+
+function closeCart() {
+    document.getElementById("cart").classList.remove("open");
+    document.getElementById("overlay").classList.remove("show");
+}
+
+/* FINALIZAR COMPRA */
+function checkout() {
+    if (cart.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+    }
+
+    const summary = cart.map(item =>
+        item.name + " x " + item.quantity
+    ).join("\n");
+
+    alert(
+        "¡Gracias por elegir RE-VEST! 🌸\n\n" +
+        summary +
+        "\n\nTotal: " +
+        document.getElementById("total").textContent +
+        "\n\nEsta es una compra demostrativa. No se realizó ningún pago."
+    );
+}
+
+/* BUSCADOR */
+document.getElementById("search").addEventListener("input", renderProducts);
+
+/* CERRAR FOTO Y CARRITO CON ESCAPE */
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closeImage();
+        closeCart();
+    }
+});
+
+/* INICIAR */
+renderProducts();
+updateCart();
+</script>
+
+</body>
+</html>
